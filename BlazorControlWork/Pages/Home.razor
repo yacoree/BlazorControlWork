@@ -1,0 +1,12 @@
+﻿@page "/home"
+@using BlazorControlWork.Data
+@inject SingletonUserService singletonUserService
+
+<h3>Home</h3>
+
+<p>Hello, @singletonUserService.GetUser().Name</p>
+<a href="profile">Profile</a>
+
+@code {
+
+}

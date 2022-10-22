@@ -1,0 +1,27 @@
+﻿@page "/profile"
+@using BlazorControlWork.Data
+@inject NavigationManager NavigationManager
+@inject SingletonUserService singletonUserService
+
+<h3>Profile</h3>
+
+<form>
+    <label>Login</label><br />
+    <input type="text" readonly value="@singletonUserService.GetUser().Login"><br>
+    <label>Email</label><br />
+    <input type="text" readonly value="@singletonUserService.GetUser().Email"><br>
+    <label>Name</label><br>
+    <input type="text" readonly value="@singletonUserService.GetUser().Name"><br>
+    <label>Surname</label><br>
+    <input type="text" readonly value="@singletonUserService.GetUser().Surname"><br>
+</form>
+<br>
+<button class="btn btn-primary" @onclick="IncrementCount">Sign out</button>
+
+@code {
+    private void IncrementCount()
+    {
+        singletonUserService.SetUser(new User());
+        NavigationManager.NavigateTo("authorization");
+    }
+}

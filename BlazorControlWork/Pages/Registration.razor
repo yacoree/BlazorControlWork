@@ -1,0 +1,53 @@
+﻿@page "/registration"
+@using BlazorControlWork.Data
+@inject NavigationManager NavigationManager
+@inject SingletonUserService singletonUserService
+
+<h3>Registration</h3>
+
+<form>
+    <label>Login</label><br />
+    <input type="text" @bind-value="@login"><br>
+    <label>Email</label><br />
+    <input type="text" @bind-value="@email"><br>
+    <label>Name</label><br>
+    <input type="text" @bind-value="@name"><br>
+    <label>Surname</label><br>
+    <input type="text" @bind-value="@surname"><br>
+    <label>Password</label><br>
+    <input type="password" @bind-value="@password"><br>
+    <label>Repeat password</label><br>
+    <input type="password" name="RepeatPassword" @bind-value="@repeatPassword">
+</form>
+<br>
+<button class="btn btn-primary" @onclick="RegistrationClick">Sign up</button>
+<button class="btn btn-primary" @onclick="AuthrizationClick">Sign in</button>
+
+@code {
+    private string login = "";
+    private string email = "";
+    private string name = "";
+    private string surname = "";
+    private string password = "";
+    private string repeatPassword = "";
+
+
+    private void RegistrationClick()
+    {
+        if (login != "" && email != "" && name != "" && surname != "" && password != "" && repeatPassword != "")
+        {
+            if (password == repeatPassword)
+            {
+                User user = new User(login, email, name, surname, password);
+                UsersDB.AddUserTodataBase(user);
+                singletonUserService.SetUser(user);
+                NavigationManager.NavigateTo("profile");
+            }
+        }
+    }
+
+    private void AuthrizationClick()
+    {
+        NavigationManager.NavigateTo("authorization");
+    }
+}

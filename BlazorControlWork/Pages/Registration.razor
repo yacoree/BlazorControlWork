@@ -1,4 +1,5 @@
-﻿@page "/registration"
+﻿@layout AutothorizationLayout
+@page "/registration"
 @using BlazorControlWork.Data
 @inject NavigationManager NavigationManager
 @inject SingletonUserService singletonUserService
@@ -29,7 +30,7 @@
     private string name = "";
     private string surname = "";
     private string password = "";
-    private string repeatPassword = "";
+    private string repeatPassword = ""; 
 
 
     private void RegistrationClick()

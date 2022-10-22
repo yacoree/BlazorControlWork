@@ -2,7 +2,7 @@
 {
     public class SingletonUserService
     {
-        User currentUser;
+         User currentUser;
 
         //public User CurrentUser { get => currentUser; set => currentUser = value; }
 

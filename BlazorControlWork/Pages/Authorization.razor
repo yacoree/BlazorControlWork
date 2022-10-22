@@ -1,4 +1,5 @@
-﻿@page "/authorization"
+﻿@layout AutothorizationLayout
+@page "/authorization"
 @using BlazorControlWork.Data
 @inject NavigationManager NavigationManager
 @inject SingletonUserService singletonUserService
@@ -46,7 +47,7 @@
                 if (password == user.Password)
                 {
                     singletonUserService.SetUser(user);
-                    NavigationManager.NavigateTo("profile");
+                    NavigationManager.NavigateTo("home");
                     return;
                 }
             }

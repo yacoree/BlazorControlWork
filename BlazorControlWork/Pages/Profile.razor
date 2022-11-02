@@ -2,8 +2,16 @@
 @using BlazorControlWork.Data
 @inject NavigationManager NavigationManager
 @inject SingletonUserService singletonUserService
+@inject FileSystemService fileSystemService
 
 <h3>Profile</h3>
+
+<form enctype="multipart/form-data" method="post">
+    <p>
+        <input type="file" name="f">
+        <input type="submit" value="Save">
+    </p>
+</form>
 
 <form>
     <label>Login</label><br />
@@ -17,11 +25,17 @@
 </form>
 <br>
 <button class="btn btn-primary" @onclick="IncrementCount">Sign out</button>
+<button class="btn btn-primary" @onclick="IncrementCount1">Save</button>
 
 @code {
     private void IncrementCount()
     {
         singletonUserService.SetUser(new User());
         NavigationManager.NavigateTo("authorization");
+    }
+
+    private void IncrementCount1()
+    {
+        fileSystemService.DownloadToLocal();
     }
 }

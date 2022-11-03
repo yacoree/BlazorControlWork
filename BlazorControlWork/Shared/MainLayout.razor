@@ -1,4 +1,6 @@
 ﻿@inherits LayoutComponentBase
+@using BlazorControlWork.Data
+@inject SingletonUserService singletonUserService
 
 
 <PageTitle>BlazorControlWork</PageTitle>
@@ -10,7 +12,11 @@
 
     <main>
         <div class="top-row px-4">
-            <a href="profile" target="_blank"></a>
+            @if (singletonUserService.GetUser() != null)
+            {
+                <a href="profile" target="_blank">@singletonUserService.GetUser().Name @singletonUserService.GetUser().Surname</a>
+            }
+            
         </div>
 
         <article class="content px-4">

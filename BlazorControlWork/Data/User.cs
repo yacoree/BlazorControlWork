@@ -32,5 +32,6 @@ namespace BlazorControlWork.Data
         public string Name { get => name; set => name = value; }
         public string Surname { get => surname; set => surname = value; }
         public string Password { get => password; set => password = value; }
+        public string PathImage { get; set; }
     }
 }

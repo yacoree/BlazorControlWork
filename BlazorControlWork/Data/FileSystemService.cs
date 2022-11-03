@@ -5,27 +5,28 @@ namespace BlazorControlWork.Data
 {
     public class FileSystemService
     {
-        public void UploadImageToDb()
+        public void UploadImageToDb(string path, string name)
         {
             var client = new MongoClient("mongodb://localhost");
-            var database = client.GetDatabase("Images321");
+            var database = client.GetDatabase("Images");
             var gridFS = new GridFSBucket(database);
 
-            using (FileStream fs = new FileStream("C:\\Users\\vglif\\Pictures\\Roblox/RobloxScreenShot20221014_211523792.png", FileMode.Open))
+            using (FileStream fs = new FileStream(path, FileMode.Open))
             {
-                gridFS.UploadFromStream("sss.jpg", fs);
+                gridFS.UploadFromStream(name, fs);
             }
         }
 
-        public void DownloadToLocal()
+        public void DownloadToLocal(User user, string path)
         {
             var client = new MongoClient("mongodb://localhost");
-            var database = client.GetDatabase("Images321");
+            var database = client.GetDatabase("Images");
             var gridFS = new GridFSBucket(database);
-            using (FileStream fs = new FileStream($"{Directory.CreateDirectory(Directory.GetCurrentDirectory() + "/Images/")}DeserializedBall.jpg", FileMode.CreateNew))
+            using (FileStream fs = new FileStream(path, FileMode.CreateNew))
             {
-                gridFS.DownloadToStreamByName("sss.jpg", fs);
+                gridFS.DownloadToStreamByName(user.PathImage, fs);
             }
         }
     }
 }
+//$"{Directory.CreateDirectory(Directory.GetCurrentDirectory() + "/Images/")}DeserializedBall.jpg"

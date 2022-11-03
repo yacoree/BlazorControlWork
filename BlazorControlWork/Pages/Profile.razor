@@ -9,7 +9,7 @@
 <form enctype="multipart/form-data" method="post">
     <p>
         <input type="file" name="f">
-        <input type="submit" value="Save">
+        <input type="submit" value="Save" onclick="@SaveUserImage">
     </p>
 </form>
 
@@ -25,17 +25,16 @@
 </form>
 <br>
 <button class="btn btn-primary" @onclick="IncrementCount">Sign out</button>
-<button class="btn btn-primary" @onclick="IncrementCount1">Save</button>
 
 @code {
     private void IncrementCount()
     {
-        singletonUserService.SetUser(new User());
+        singletonUserService.SetUser(null);
         NavigationManager.NavigateTo("authorization");
     }
 
-    private void IncrementCount1()
+    private void SaveUserImage()
     {
-        fileSystemService.DownloadToLocal();
+        
     }
 }
